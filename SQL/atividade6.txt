@@ -1,0 +1,47 @@
+Atividade 6
+Cleidiane da rosa eloy
+1) Quantidade de tweets do usuário identificado por @usuario1
+R: 
+select count(*) as "quantidade de tweets"
+ from tweet
+ where idusuario= '@usuario1'
+2) Últimos 5 tweets dos mais recentes para os mais antigos postados pelo usuário identificado por @usuario5
+R: 
+select * from tweet
+where idusuario= '@usuario5' 
+order by data_hora desc 
+limit 5
+3) Quantidade de pessoas que eu sigo
+R:
+select count(sigo)
+from seguindo
+where eu = "@usuario1"
+4) Nome de quem eu sigo ?
+R:
+select nome
+from seguindo, usuario 
+where sigo = idusuario
+and eu = "@usuario1"
+5) Quantidade de pessoas que me seguem ?
+R: select count(eu)
+from  seguindo
+where sigo  = "@usuario5"
+6) Quem me segue ?
+R: select eu  as seguidores
+from  seguindo
+where sigo  = "@usuario5"
+7) Últimos 5 tweets de quem eu sigo
+R: 
+select eu, sigo ,tweet.*
+from  seguindo, usuario, tweet
+where usuario.idusuario = tweet.idusuario
+and usuario.idusuario = sigo
+and eu = "@usuario1"
+order by data_hora
+limit 5
+8) Um tweet e suas respostas
+R: 
+select *
+from tweet 
+where idtweet = '1'
+or idtweet_responde_a = '1'

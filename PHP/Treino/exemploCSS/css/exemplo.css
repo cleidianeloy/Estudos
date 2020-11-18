@@ -1,0 +1,79 @@
+
+
+body
+{
+	background-color: #F8F8FF;
+}
+div.tudo
+{
+	width:1000px;
+	width:500;
+}
+div.topo
+{
+	width: 1340px;
+	height: 100px;	
+	background-color: black;
+	border-bottom:solid 3px;
+	border-color: gray;
+
+
+}
+
+ul.nav
+{
+	  list-style-type: none;
+	  float:left;
+	  margin-top: 20px;
+	  
+}
+li
+{
+	display: inline;
+	margin-left: 20px;
+	font-size: 30px;
+
+}
+
+li a 
+{
+	color: white;
+	
+
+}
+
+form.busca
+{
+	float: right;
+	margin-top: 50px;
+	margin-right: 20px;
+	color: white;
+}
+
+
+a 
+{
+	text-decoration-line: none;
+	color: black;
+}
+a.logo
+{
+	float: left;
+	margin-right: 10px;
+
+}
+div.principal
+{
+	margin-top: 90px;
+	text-align: center;
+	width: 1340px;
+	height: 800px;
+}
+div.fim 
+{
+	width: 1340px;
+	background-color: black;
+	color: white;
+	text-align: center;
+
+}

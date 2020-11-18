@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Odibee+Sans|Oswald&display=swap');
+
+/*podemos usar tbm o seletor universal*/
+body,button, select, input{
+	font-family: Oswald;
+	margin:0;
+}
+h1{
+	font-family: Teko;
+	text-align: center;
+	border-bottom:1px solid #ccc;
+	background:#2f4e6f;
+	color:#fff;
+	box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+	margin:0;
+
+/*Aqui controlamos se o elemento rola com o restante do conteudo ou  se permance fixo, quando o navegador mostra a barra de rolagem
+*/
+	position: sticky;
+	top:0;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	margin-bottom: 20px;
+}
+fieldset{
+	width: 50%;
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+	background: #f5f5f5; /*cinza*/
+	margin:20px auto; /* 20px distancia entre os fieldset, alinhar no centro o objeto na horizontal*/
+	padding: 25px;
+	padding-bottom: 8px;
+}
+/*alinhando os label as caixas de textos*/
+label.alinha{
+
+	width: 300px;
+	display: inline-block;
+	text-align: right;
+}
+/*utilizando seletor de atributos no css*/
+input[name = "outro-aluno"]{
+	width: 250px;
+}
+button{
+	margin:auto;
+	display: block;	/*converte button de elemento inline para bloco, permitindo a centralização*/
+	height: 30px;
+	font-size: 18px;
+	margin-top: 20px;
+}
+/*Gerar automaticamente pelo PHP*/
+p{
+	border:
+	1px solid #ccc;
+	background: #eee;
+	width: 50%;
+	padding: 30px;
+	margin:30px auto;
+}
+/*Gerar automaticamente pelo PHP*/
+table{
+	width: 50%;
+	margin:20px auto ;
+	border:1px solid #ccc;
+	border-collapse: collapse; /*Retira os espaços entre as celulas de uma tabela*/
+}
+td,th{
+	border:1px solid #ccc;
+}
+th{
+	background: #2f4e6f;
+	color:#fff;
+}td{
+	text-align: center;
+}
+span{
+	font-weight: bold;
+	color:#458B00;
+	text-decoration:underline;
+}
+/*formatar a legenda da tabela */
+caption
+{
+	text-align: left;
+	text-align: right;
+	margin-bottom: 8px;
+ /* mudar a posição da legenda */
+ 	caption-side:bottom;
+ 	margin-top:10px;
+}

@@ -1,0 +1,23 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	function pulaLinha()
+	{
+		document.write("<br>");
+		document.write("<br>");
+
+	}
+	function mostra(frase){
+		document.write(frase);
+		pulaLinha();
+	}
+
+	var anoCopa = 1930;
+	while(anoCopa<2020)
+	{
+		mostra("Teve copa em " + anoCopa);
+		anoCopa = anoCopa + 4;
+	}
+		mostra(anoCopa-4 + " foi a ultima copa");
+		mostra("a proxima é em " + anoCopa);
+
+</script>

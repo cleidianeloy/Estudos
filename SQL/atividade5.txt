@@ -1,0 +1,116 @@
+Atividade 5
+Cleidiane da rosa eloy
+1)	Listar todos os dados do Código de Endereçamento Postal (CEP)
+R: select * from cep
+2)	Listar todos os dados do Código Situação Tributária (CST)
+R: select * from cst
+3)	Listar todos os dados dos serviços disponíveis (CNAE)
+R: select * from cnae
+4)	Listar todos os dados do Código Fiscal de Prestação de Serviços (CFPS)
+R: select * from cfps
+5)	Listar todos os dados dos tomadores de serviço da base da PMF, concatenando o logradouro e o complemento no endereço
+R: select cmc_tomador,cpf_cnpj,nome_razao,cfps,CONCAT(logradouro,",",complemento) as endereço,cep.ceps
+from tomador, cep
+where tomador.cep = cep.cep
+6)	Listar as NFPSE emitidas
+R: select * from nfpse
+7)	Listar todos dados de uma determinada NFPSE, tomador, emissor, calculando o subtotal= valor_unitario*quantidade e o ISSQN= (aliquota*valor_unitario*quantidade)/100
+R: select nfpse.*, tomador.nome_razao as tomador,emissor.nome_razao as emissor, valor_unitario, quantidade,
+	   valor_unitario*quantidade AS subtotal,aliquota,round(((aliquota*valor_unitario*quantidade)/100),2) as ISSQN
+from nfpse,tomador, emissor, nfpse_detalhe, cnae
+where nfpse.numero= nfpse_detalhe.numero
+and nfpse.cmc_tomador =tomador.cmc_tomador
+and nfpse.cmc_emissor =emissor.cmc_emissor
+and nfpse_detalhe.codigo = cnae.codigo
+and nfpse.numero='000004';
+8)	Atualizar o total_serviços de uma NFPSE com a soma dos subtotais das respectivas NFPSE_DETALHE
+R:	update nfpse 
+set total_serviços = (select sum(valor_unitario*quantidade)
+from nfpse, nfpse_detalhe, cnae
+where nfpse.numero=nfpse_detalhe.numero
+and nfpse_detalhe.codigo = cnae.codigo
+and nfpse.numero ='000004')
+where nfpse.numero= '000004';
+
+select * from nfpse
+
+9)	Atualizar o valor_issqn de uma NFPSE com a soma dos ISSQN das respectivas NFPSE_DETALHE
+R: use nfpse;
+update nfpse 
+set valor_issqn = (select sum((aliquota*valor_unitario*quantidade)/100)
+from nfpse, nfpse_detalhe, cnae
+where nfpse.numero=nfpse_detalhe.numero
+and nfpse_detalhe.codigo = cnae.codigo
+and nfpse.numero ='000004')
+where nfpse.numero= '000004';
+
+select * from nfpse;
+10)	Execute os casos de uso 8 e 9 para atualizar cada uma das demais NFPSE …
+R: USE nfpse;
+UPDATE nfpse
+SET total_serviços = (SELECT SUM(valor_unitario*quantidade)
+ FROM nfpse
+ JOIN nfpse_detalhe ON nfpse.numero = nfpse_detalhe.numero
+JOIN cnae ON nfpse_detalhe.codigo = cnae.codigo);
+
+ use nfpse;
+update nfpse 
+set valor_issqn = (select sum((aliquota*valor_unitario*quantidade)/100)
+from nfpse, nfpse_detalhe, cnae
+where nfpse.numero=nfpse_detalhe.numero
+and nfpse_detalhe.codigo = cnae.codigo);
+
+select * from nfpse;
+
+11)	 Listar as NFPSE emitidas para um tomador
+R: select nfpse.*, tomador.nome_razao as tomador
+from nfpse, tomador
+where nfpse.cmc_tomador = tomador.cmc_tomador
+and nfpse.cmc_tomador='T111111';
+12)	 Listar as NFPSE e NFPSE_detalhe emitidas que contém um determinado serviço
+R: select nfpse.*, nfpse_detalhe.*
+from nfpse, nfpse_detalhe
+where nfpse.numero = nfpse_detalhe.numero
+and nfpse_detalhe.codigo='6201005';
+
+13)	Listar as NFPSE emitidas entre duas datas (fev a abr 2019)
+R: select *
+from nfpse
+where emissao>='2019-02-02' and emissao<='2019-04-04';
+
+14)	 Listar as NFPSE emitidas com total_serviços acima de R$ 20.000,00
+R: select *
+from nfpse
+where total_serviços > 20000;
+
+15)	Listar os tomadores que não tiveram NFPSE emitidas
+R: select tomador.*, nfpse.numero
+from tomador
+left join nfpse on tomador.cmc_tomador=nfpse.cmc_tomador
+where numero is null;
+
+16)	A crise irá provocar atraso no recebimento de tributos pela PREFEITURA … Alterar a data de emissão de todas as NFPSE à partir do mês de abril para o dia 2019-09-01
+R: use nfpse;
+update nfpse
+set emissao='2019-09-01'
+where emissao>='2019-04-01';
+17)	Listar os valores arrecadados de ISSQN mensalmente pela PREFEITURA
+R: select date_format(emissao, "%Y %m") as Periodo, sum(total_serviços) as Total
+from nfpse
+group by date_format(emissao, "%Y %m");
+18)	Calcular o faturamento anual de um emissor
+R: select cmc_emissor, date_format(emissao, "%Y") as Periodo, sum(total_serviços) as Total
+from nfpse
+group by date_format(emissao, "%Y")
+having cmc_emissor='E000000';
+19)	Calcular o valor médio das NFPSE de um emissor
+R: use nfpse;
+select cmc_emissor, round(avg(total_serviços),2) as MediaNF
+from nfpse
+having cmc_emissor='E000000';
+20)	Listar os três maiores tomadores de serviço e respectivos valores totais
+R: select cmc_tomador, round(sum(total_serviços),2) as NF
+from nfpse
+group by  cmc_tomador
+order by sum(total_serviços) desc
+limit 3;

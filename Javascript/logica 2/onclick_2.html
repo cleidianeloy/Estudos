@@ -1,0 +1,23 @@
+<canvas width="600" height="400"></canvas>
+<script type="text/javascript">
+	var	tela = document.querySelector('canvas');
+	var pincel = tela.getContext('2d');
+
+	pincel.fillStyle = 'grey';
+	pincel.fillRect(0,0,600,400);
+
+	function desenhaCirculo(evento) {
+
+		var	x = evento.pageX  - tela.offsetLeft; //evento.pageX/Y permite saber onde foi clicado e - tela.offsetLeft/Top exclui as partes que não estão sendo preenchidas pelo canvas ('evento' é da gunção e a 'tela' é a variavel )
+
+		var y = evento.pageY - tela.offsetTop;
+		pincel.fillStyle = 'blue';
+		pincel.beginPath();
+		pincel.arc(x, y, 10, 0, 2 * 3.14);
+		pincel.fill();
+		console.log(x + ',' + y);
+
+
+	}
+	tela.onclick = desenhaCirculo; //não tem () para chamar a função porque aqui ele está colocando a função dentro do evento, quem chama a função é o navegador no momento que eu clico na tela. 
+</script>

@@ -1,0 +1,93 @@
+Atividade 4
+Cleidiane da rosa eloy
+1)	Listar todos os dados da frente da DNI
+R: select nome,datanasc, sangue_rh, cidade,dni.uf, filiacao, ocorrencia.descricao, simbolo, assinatura, foto
+from dni
+left join naturalidade on dni.cep = naturalidade.cep 
+left join filiacao on dni.dni = filiacao.dni 
+left join ocorrencia on ocorrencia.dni = dni.dni
+left join nec_especial on nec_especial.descricao = ocorrencia.descricao
+2)	Listar os dados da frente em ordem alfabética do nome
+R: select  nome,datanasc, sangue_rh, cidade,dni.uf, filiacao, ocorrencia.descricao, simbolo, assinatura, foto
+from dni
+left join naturalidade on dni.cep = naturalidade.cep 
+left join filiacao on filiacao.dni = dni.dni 
+left join ocorrencia on ocorrencia.dni = dni.dni
+left join nec_especial on nec_especial.descricao = ocorrencia.descricao
+order by nome;
+3)	Listar os dados da frente e o DNI para um determinado DNI
+R: select nome, dni.dni,datanasc, sangue_rh, cidade,dni.uf, filiacao, ocorrencia.descricao, simbolo, assinatura, foto
+from dni
+left join naturalidade on  dni.cep = naturalidade.cep  
+left join filiacao on filiacao.dni = dni.dni
+left join ocorrencia on ocorrencia.dni = dni.dni
+left join nec_especial on nec_especial.descricao = ocorrencia.descricao
+where dni.dni= '000.000.000-10';
+4)	Listar os dados da frente e o DNI para um determinado CPF
+R: select nome,dni.dni,datanasc, sangue_rh, cidade,dni.uf, filiacao, ocorrencia.descricao, simbolo, assinatura, foto
+from dni
+left join naturalidade on  dni.cep = naturalidade.cep  
+left join filiacao on filiacao.dni = dni.dni
+left join ocorrencia on ocorrencia.dni = dni.dni
+left join nec_especial on nec_especial.descricao = ocorrencia.descricao
+where cpf= '000.000.000-00';
+5)	Listar os dados da frente e o DNI dos que não possuem CPF
+R:  select  nome, dni.dni,datanasc, sangue_rh, cidade,dni.uf, filiacao, ocorrencia.descricao, simbolo, assinatura, foto
+from dni
+left join naturalidade on dni.cep = naturalidade.cep 
+left join filiacao on dni.dni = filiacao.filiacao 
+left join ocorrencia on ocorrencia.dni = dni.dni
+left join nec_especial on nec_especial.descricao = ocorrencia.descricao
+where cpf is null;
+6)	Listar nome e DNI para a NATURALIDADE = “Florianópolis”
+R: select nome, dni
+from dni, naturalidade
+ where dni.cep = naturalidade.cep 
+ and cidade = 'Florianópolis';
+7)	Listar nome e DNI para quem não tem CERT MILITAR
+R: select nome, dni
+from dni
+left join naturalidade ON dni.cep = naturalidade.cep 
+where cert_militar  is null;
+8)	Listar nome e DNI dos MAIORES DE 65 ANOS
+R: select nome, dni 
+from dni
+where year(now())-year(datanasc) > 65;
+
+9)	Listar nome e a FILIAÇÃO para um determinado DNI
+R: select nome, filiacao 
+from dni
+left join filiacao on filiacao.dni = dni.dni
+where dni.dni = '111.111.111-11'
+
+10)	Listar nome e DNI dos órfãos 
+R:  select nome, dni.dni
+from dni
+left join filiacao on filiacao is null
+11)	Média de idade para a NATURALIDADE = “Florianópolis”
+R: select avg(year(now())-year(datanasc))  as 'media das idades'
+from dni, naturalidade
+ where dni.cep = naturalidade.cep 
+ and cidade = 'Florianópolis';
+12)	Listar nome e DNI dos que estão acima da média de idade
+R: select nome,dni.dni
+from dni
+left join naturalidade on dni.cep = naturalidade.cep 
+where cidade = 'Florianópolis'
+and year(now())-year(datanasc) > (select avg(year(now())-year(datanasc))  
+from dni)
+13)	Listar nome, DNI e DATA NASCIMENTO do mais idoso
+R: select nome, dni, datanasc
+from dni
+where year(now())-year(datanasc) = (select max(year(now())-year(datanasc)) 
+from dni)
+14)	Listar as cinco pessoas mais idosas
+R: select nome ,  year(now())-year(datanasc) as 'idade'
+from dni
+order by  'idade' desc
+limit 5
+15)	Listar nome e DNI para quem fator RH
+R: USE dni;
+SELECT dni.dni, nome, sangue_rh
+FROM dni
+WHERE sangue_rh LIKE '%-%'; 

@@ -1,0 +1,320 @@
+/*avaliação final  (cleidiane da rosa eloy)*/
+
+/*1) Listar todos os dados dos proprietários*/
+
+select * from proprietario;
+
+/*2) Inserir um registro na tabela proprietário com os seus dados*/
+
+insert into proprietario (cpf,nome,telefone,email)
+values  ('117.931.249-06', 'cleidiane', '48 99900-0100', 'cleidianeloy@hotmail.com');
+
+/*3) Alterar os nomes dos registros existentes na tabela proprietário com o nome
+dos colegas*/
+
+update proprietario
+set nome="damaris"
+where cpf= '111.111.111-11';
+
+update proprietario	
+set nome="dayane"
+where cpf= '222.222.222-22';
+
+update proprietario
+set nome="felipe"
+where cpf= '333.333.333-33';
+
+update proprietario
+set nome="guilherme"
+where cpf= '444.444.444-44';
+
+update proprietario
+set nome="gustavo"
+where cpf= '555.555.555-55';
+
+
+/*4) Listar CPF e nome dos proprietários*/
+
+select nome, cpf 
+from proprietario;
+
+/*5) Listar nome e telefone dos proprietários em ordem de nome (decrescente)*/
+
+select nome,telefone
+from proprietario
+order by nome desc;
+
+/*6) Listar todos os dados do proprietário de cpf igual a “222.222.222-22”*/
+
+select * 
+from proprietario
+where cpf='222.222.222-22';
+
+/*7) Listar todos os dados dos proprietários que NÃO tem carro cadastrado no
+LAVAJATO*/
+
+select * 
+from proprietario
+left join carro on carro.cpf=proprietario.cpf
+where carro.cpf is null;
+
+/*8) Listar o nome dos proprietários que tem mais que um carro*/
+
+select nome, count(nome) as 'quantidade'
+from proprietario
+right join carro on carro.cpf = proprietario.cpf
+group by nome
+having count(nome) > 1;
+
+
+/*9) Listar todos os dados dos carros*/
+
+select placa, cor, cpf as 'CPF do proprietario', modelo.descricao as modelo, marca.nome as marca 
+from carro, modelo, marca
+where carro.idModelo = modelo.idModelo 
+and marca.idMarca = modelo.idMarca;
+
+/*10) Listar placa, cor (carro) e nome (proprietário)*/
+
+select placa, cor, proprietario.nome as proprietario
+from proprietario
+right join carro on proprietario.cpf = carro.cpf;
+
+/*11) Listar placa, cor (carro) e descrição (modelo)*/
+
+select placa, cor, modelo.descricao
+from carro, modelo, marca
+where carro.idModelo = modelo.idModelo 
+and marca.idMarca = modelo.idMarca;
+
+/*12) Listar placa, cor (carro), descrição (modelo) e nome (marca)*/
+
+select placa, cor, modelo.descricao as modelo, marca.nome as marca 
+from carro, modelo, marca
+where carro.idModelo = modelo.idModelo 
+and marca.idMarca = modelo.idMarca;
+
+/*13) Listar descrição (modelo) e nome (marca)*/
+
+select descricao as modelo, nome as marca
+from marca, modelo
+where modelo.idModelo = marca.idMarca;
+
+/*14) Listar descrição (modelo) e nome (marca) para carros de marca “Fiat”*/
+
+select descricao as modelo, nome as marca
+from marca, modelo
+where modelo.idModelo = marca.idMarca
+and marca.nome ='Fiat';
+
+/*15) Listar descrição (modelo) e nome (marca) em ordem de modelo*/
+
+select descricao as modelo, nome as marca
+from marca, modelo
+where modelo.idModelo = marca.idMarca
+order by descricao;
+
+/*16) Listar descrição (modelo) e nome (marca) em ordem de marca*/
+
+select descricao as modelo, nome as marca
+from marca, modelo
+where modelo.idModelo = marca.idMarca
+order by nome;
+
+/*17) Listar placa, cor (carro), descrição (modelo), nome (marca) e nome
+(categoria)*/
+
+select placa, cor, modelo.descricao as modelo, marca.nome as marca, categoria.nome as categoria
+from carro, modelo, marca, categoria
+where carro.idModelo = modelo.idModelo 
+and marca.idMarca = modelo.idMarca
+and modelo.idCategoria = categoria.idCategoria;
+
+/*18) Listar nome (proprietário), placa, cor (carro), descrição (modelo), nome
+(marca) para quem não tem carro da marca “Chevrolet”*/
+
+select proprietario.nome, placa,cor, descricao as modelo, marca.nome as marca
+from marca, modelo, proprietario, carro
+where modelo.idModelo = marca.idMarca
+and proprietario.cpf = carro.cpf
+and carro.idModelo= modelo.idModelo
+and marca.nome != 'Chevrolet';
+
+/*19) Listar nome (proprietário), placa, cor (carro) para carros da marca
+“Volkswagem”*/
+
+select proprietario.nome,  placa, cor
+from proprietario, carro, marca, modelo
+where proprietario.cpf = carro.cpf
+and carro.idModelo= modelo.idModelo
+and modelo.idModelo = marca.idMarca
+and marca.nome = 'Volkswagem';
+
+/*20) Listar nome (proprietário), placa, cor (carro) para carros da cor “AZUL” ou
+“DOURADO”*/
+
+select proprietario.nome,  placa, cor
+from proprietario, carro, marca, modelo
+where proprietario.cpf = carro.cpf
+and carro.idModelo= modelo.idModelo
+and modelo.idModelo = marca.idMarca
+and (carro.cor = 'AZUL' or carro.cor = 'DOURADO');
+
+
+/*21) Listar nome e email dos proprietários que tem desconto maior que 10%*/
+
+select proprietario.nome, proprietario.email, categoria.taxaDesconto
+from proprietario, carro, modelo, categoria
+where proprietario.cpf = carro.cpf
+and carro.idModelo= modelo.idModelo
+and modelo.idCategoria = categoria.idCategoria
+and categoria.taxaDesconto > 10;
+
+/*22) Listar todos os dados dos serviços*/
+
+select placa, descricao,valor
+from ordemservico,itemos, servico
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico;
+
+/*23) Listar todos os dados dos serviços com valor superior a R$50,00*/
+
+select placa, descricao,valor
+from ordemservico,itemos, servico
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico
+and valor > 50;
+
+/*24) Listar todos os dados dos serviços em ordem crescente de preço*/
+
+select placa, descricao,valor
+from ordemservico,itemos, servico
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico
+order by valor;
+
+/*25) Listar todos os dados dos serviços para os três mais caros*/
+
+select placa, descricao,valor
+from ordemservico,itemos, servico
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico
+order by valor desc
+limit 3;
+
+/*26) Listar a média dos preços dos serviços*/
+
+select avg(valor)
+from ordemservico,itemos, servico
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico;
+
+/*27) Listar a descrição e o valor do serviço mais barato*/
+
+select descricao, valor
+from ordemservico,itemos, servico
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico
+order by valor 
+limit 1;
+
+/*28) Listar todos os dados da Ordem de Serviço*/
+select * from ordemservico;
+
+/*29) Listar os dados da Ordem de Serviço e respectivos itens*/
+
+select ordemservico.*, itemos.* 
+from ordemservico, itemos
+where ordemservico.numero = itemos.numero;
+
+/*30) Listar os dados da Ordem de Serviço, quantidade e agenda (itemOS),
+descrição e valor (serviço)*/
+
+select ordemservico.*, quantidade, agenda, descricao, valor
+from ordemservico,itemos, servico
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico;
+
+/*31) Listar os dados da Ordem de Serviço, quantidade e agenda (itemOS),
+descrição e valor (serviço) para o proprietário de nome “nome_colega”*/
+
+select ordemservico.*, quantidade, agenda, descricao, valor, nome
+from ordemservico,itemos, servico, carro, proprietario
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico
+and carro.placa = ordemservico.placa
+and proprietario.cpf = carro.cpf
+and nome='felipe';
+
+/*32) Listar os dados da Ordem de Serviço, quantidade e agenda (itemOS),
+descrição e valor (serviço), calculando o subtotal=valor*quantidade*/
+
+select ordemservico.*, quantidade, agenda, descricao,valor as valor,concat('R$ ', round(valor*quantidade)) as subtotal
+from ordemservico,itemos, servico
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico;
+
+/*33) Listar os dados da Ordem de Serviço, quantidade e agenda (itemOS),
+descrição e valor (serviço), calcular o desconto=(valor*quantidade*taxaDesconto/100)*/
+
+select ordemservico.*, quantidade, agenda, servico.descricao, round(valor*quantidade*taxaDesconto/100) as desconto
+from ordemservico,itemos, servico, carro, modelo, categoria 
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico
+and carro.placa = ordemservico.placa
+and carro.idModelo = modelo.idModelo
+and modelo.idCategoria = categoria.idCategoria;
+
+/*34) Listar e-mail dos proprietários cujos carros nunca realizaram polimento para
+envio de mala direta*/
+
+select email
+from proprietario
+left join carro on proprietario.cpf = carro.cpf
+left join ordemservico on carro.placa = ordemservico.placa
+left join itemos on ordemservico.numero=itemos.numero
+left join servico on itemos.idServico = servico.idServico
+where (servico.descricao != 'Polimento' or carro.cpf is null );
+
+/*35) Total faturado pelo LavaJato no dia “2019-09-20”*/
+
+select sum(round(valor*quantidade)) as "total faturado"
+from ordemservico,itemos, servico
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico
+and agenda like '%2019-09-20%';
+
+/*36) Total de descontos concedidos no mês de setembro*/
+
+select agenda,  round(valor*quantidade) as "total faturado"
+from ordemservico,itemos, servico
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico
+and agenda like '%-09-%';
+
+/*37) Atualizar o totalOS (ordemServico) com o resultado do cálculo
+totalOS=subtotal-desconto*/
+
+update ordemservico
+set totalOS = ( select * from (select  ((valor*quantidade) - (valor*quantidade*taxaDesconto/100)) 
+from ordemservico,itemos, servico, carro, modelo, categoria 
+where ordemservico.numero=itemos.numero
+and itemos.idServico = servico.idServico
+and carro.placa = ordemservico.placa
+and carro.idModelo = modelo.idModelo
+and modelo.idCategoria = categoria.idCategoria
+and ordemservico.placa='BBB2222')	as x)
+where ordemservico.placa='BBB2222';
+
+/*(REPETI PRA CADA PLACA,menos o a placa para a placa 'EEE5555', nesse caso que aparecia duas vezes adicionei um  "sum" 
+na frente de "(select  ((valor*quantidade) - (valor*quantidade*taxaDesconto/100))" para somar os dois serviços)*/
+
+/*38) Listar o nome (proprietário) e totalOS (ordemServico) dos três melhores
+clientes faturamento*/
+
+select nome, totalOS
+from proprietario, carro, ordemservico
+where proprietario.cpf = carro.cpf
+and ordemservico.placa = carro.placa 
+order by totalOS desc
+limit 3;

@@ -1,0 +1,38 @@
+﻿CFPS;DESCRICAO
+9000;Entradas, no estabelecimento
+9001;De materiais e mercadorias para assistência técnica
+9002;De bens de qualquer espécie para armazenamento, depósito, carga descarga, arrumação e guarda
+9003;De máquinas, veículos, aparelhos e equipamentos para lubrificação, limpeza e revisão
+9004;De máquinas, veículos, motores, elevadores ou quaisquer objetos para conserto, reparação, conservação ou manutenção
+9005;De veículos para recondicionamento de motores ou somente de motores
+9006;De quaisquer objetos para recondicionamento, acondicionamento, pintura, beneficiamento, lavagem, secagem, tingimento, galvanoplastia, anodização, corte, recorte, polimento, plastificação e congêneres
+9007;De aparelhos, máquinas e equipamentos para instalação e montagem
+9100;Saídas, no estabelecimento
+9101;De materiais e mercadorias para assistência técnica
+9102;De bens de qualquer espécie para armazenamento, depósito, carga descarga, arrumação e guarda
+9103;De máquinas, veículos, aparelhos e equipamentos para lubrificação, limpeza e revisão
+9104;De máquinas, veículos, motores, elevadores ou quaisquer objetos para conserto, reparação, conservação ou manutenção
+9105;De veículos para recondicionamento de motores ou somente de motores
+9106;De quaisquer objetos para recondicionamento, acondicionamento, pintura, beneficiamento, lavagem, secagem, tingimento, galvanoplastia, anodização, corte, recorte, polimento, plastificação e congêneres
+9107;De aparelhos, máquinas e equipamentos para instalação e montagem
+9200;Prestações de Serviço realizadas
+9201;Para Tomador ou Destinatário estabelecido ou domiciliado no município
+9202;Para Tomador ou Destinatário estabelecido ou domiciliado fora do município
+9203;Para Tomador ou Destinatário estabelecido ou domiciliado em outro estado da federação
+9204;Para Tomador ou Destinatário estabelecido ou domiciliado no exterior
+9205;Fora do Município para Tomador ou Destinatário estabelecido ou domiciliado no estado de Santa Catarina
+9206;Fora do Município para Tomador ou Destinatário estabelecido ou domiciliado em outro Estado da Federação
+9207;Fora do Município para Tomador ou Destinatário estabelecido ou domiciliado no exterior
+9208;Em bens de terceiros por conta de Tomador ou Destinatário estabelecido ou domiciliado no Município
+9209;Em bens de terceiros por conta de Tomador ou Destinatário estabelecido ou domiciliado fora do município
+9210;Em bens de terceiros por conta de Tomador ou Destinatário estabelecido ou domiciliado em outro estado da federação
+9211;Em bens de terceiros por conta de Tomador ou Destinatário estabelecido ou domiciliado no exterior
+9300;Prestações de serviços realizadas no Município e contratadas
+9301;De Prestador  estabelecido ou domiciliado no Município
+9302;De Prestador  estabelecido ou domiciliado fora do Município
+9303;De Prestador  estabelecido ou domiciliado em outro estado da federação
+9304;De Prestador  estabelecido ou domiciliado no exterior
+9400;Prestação de Serviços realizadas fora do Município e contratadas
+9402;De Prestador estabelecido ou domiciliado fora do Município
+9403;De Prestador estabelecido ou domiciliado em outro estado da federação
+9404;De Prestador estabelecido ou domiciliado no exterior

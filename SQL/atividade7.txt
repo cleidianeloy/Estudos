@@ -1,0 +1,61 @@
+Atividade 7
+Cleidiane da rosa eloy
+1) Listar nome dos pares de contato
+R: 
+select t1.nome as usuario, t2.nome as contato
+from usuario as t1, contato, usuario as t2
+where t1.idusuario=contato.eu
+and t2.idusuario=contato.contato
+and t2.egrupo is null
+order by t1.nome, t2.nome
+2) Listar os nomes dos usuários e os nomes dos grupos que são criador
+R: 
+select t2.nome as criador, t2.nome as grupo
+from usuario as t1, usuario as t2
+where t1.idusuario = t2.criado_por
+3) Listar nome e telefone dos contatos do usuário ‘+55 48 9999-9991’
+R: 
+select usuario.nome, contato
+from usuario, contato 
+where usuario.idusuario = contato.contato
+and eu = '+55 48 9999-9994'
+and egrupo is null
+4) Listar os dados do grupo ‘grupo1’
+R:select * 
+from usuario
+where idusuario='grupo1'
+5) Listar membros do ‘grupo3’ e seus nomes
+R: select nome, contato as 'no grupo', eu as numero 
+from usuario, contato
+where contato.eu = usuario.idusuario 
+and contato='grupo3'
+6) Listar troca de mensagens entre dois contatos em ordem inversa de
+data_hora
+R: select eu, contato, texto, data_hora 
+from contato, mensagem
+where contato.idcontato = mensagem.idcontato
+and ((eu= '+55 48 9999-9991' and contato='+55 48 9999-9992') or (eu='+55 48 9999-9992' and contato='+55 48 9999-9991'))
+order by data_hora DESC
+7) Listar troca de mensagens entre o ‘grupo1’ em ordem de data_hora
+R: select eu, contato, texto, data_hora 
+from contato, mensagem
+where contato.idcontato=mensagem.idcontato
+and contato='grupo1'
+order by data_hora;
+8) Listar última mensagem enviada no ‘grupo1’
+R: from contato, mensagem
+where contato.idcontato=mensagem.idcontato
+and contato='grupo1'
+order by data_hora desc
+limit 1
+9) Listar os contatos com quem o usuário ‘+55 48 9999-9991’ trocou mensagem, os 15 caracteres da mensagem, data_hora ordenados por idcontato e data_hora (mais recentes primeiro)
+R:
+select eu, contato, left(texto,15), data_hora 
+from contato, mensagem
+where contato.idcontato=mensagem.idcontato
+and contato.idcontato in ( select idcontato 
+				from usuario, contato 
+                           		 where usuario.idusuario =contato.contato
+                           		 and (eu='+55 48 9999-9991' or contato='+55 48 9999-9991')
+                            )
+group by contato.idcontato,data_hora DESC;

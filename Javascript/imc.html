@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	function pulaLinha()
+	{
+		document.write("<br>");
+		document.write("<br>");
+
+	}
+	function mostra(frase){
+		document.write(frase);
+		pulaLinha();
+	}
+
+	function calculaImc(altura, peso) {
+
+    var/* da pra trocar o var por retorn e tirar o return imc */ imc = peso / (altura * altura);
+    return imc; // esse return é pra ele retornar o resultado da conta, sem ele, não acontece nada
+
+	}
+
+	var imcFlavio = calculaImc(1.71, 73); 
+	var imcAmigo = calculaImc(1.72, 68);
+	// a variavel a cima está recebendo o return sem necessidade de pedir pra calcular e depois mostrar o que foi calculado.
+	mostra(imcFlavio);
+	mostra(imcAmigo);
+
+</script>

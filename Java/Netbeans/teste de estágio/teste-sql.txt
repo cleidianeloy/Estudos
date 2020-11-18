@@ -1,0 +1,18 @@
+Seu nome: Cleidiane da Rosa eloy
+
+1)select idfilme, data_lançamento, nome, descricao
+from en_filme
+order by data_lancamento desc
+limit 1;
+
+2)select en_cliente.id_cliente, en_cliente.nome , count(en_aluguel.id_cliente) AS alugueis
+from  en_cliente,en_aluguel
+where en_cliente.idcliente = en_aluguel.id_cliente
+group by en_aluguel.id_cliente
+order by alugueis;
+
+3)select en_cliente.id_cliente, en_cliente.nome, count(en_aluguel.id_cliente) AS alugueis, sum(en_aluguel.valor) as total_gasto, year(data_aluguel) as ano
+from  en_cliente,en_aluguel
+where en_cliente.idcliente = en_aluguel.id_cliente
+group by  en_aluguel.id_cliente, year(data_aluguel)
+order by 'total_gasto' desc;

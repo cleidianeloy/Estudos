@@ -1,0 +1,37 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	function pulaLinha()
+	{
+		document.write("<br>");
+		document.write("<br>");
+
+	}
+	function mostra(frase){
+		document.write(frase);
+		pulaLinha();
+	}
+
+	var NumeroPensado= 5;
+	var tentativa = 1;
+
+	var chute=parseInt(prompt("escreva seu chute:"));
+	while(tentativa<= 3)
+	{
+		chute=parseInt(prompt("escreva seu chute:"));
+		if(chute==NumeroPensado)
+		{
+			mostra("você acertou!!");
+			break;
+		}
+		else
+		{
+			mostra("você errou :(");
+			mostra("o numero correto é: " + NumeroPensado);
+
+		}
+		tentativa++;
+	}
+	mostra("FIM");
+	
+
+</script>

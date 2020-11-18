@@ -1,0 +1,17 @@
+<canvas width="600" height="400"></canvas>
+<script type="text/javascript">
+	var tela = document.querySelector('canvas');
+	var pincel = tela.getContext('2d');
+
+	pincel.fillStyle = 'grey';
+	pincel.fillRect(0,0,600,400);
+
+	function exibeAlerta(evento)
+	{
+		alert('Cliquei');
+		console.log(evento); //se apertar o F12 no teclado essa função permite ver o x e y de onde foi clicado 
+	}
+
+	tela.onclick = exibeAlerta; //não tem () para chamar a função porque aqui ele está colocando a função dentro do evento, quem chama a função é o navegador no momento que eu clico na tela. 
+</script>
+</script>
