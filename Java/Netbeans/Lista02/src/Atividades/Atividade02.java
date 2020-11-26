@@ -32,7 +32,7 @@ public class Atividade02 {
         }
         if(numeros[0] < numeros[1])
         {
-            System.out.println(numeros[1] + " é o maior");
+            System.out.println(numeros[1] + " é o menor");
         }
         if(numeros[0] == numeros[1]){
             System.out.println("os dois numeros são iguais");
