@@ -21,17 +21,14 @@ public class Principal {
             System.out.println("sua escolha foi a atividade 2");
             Atividade02.atividade();
            
-        }
-        if(escolha == 3){
+        }else if(escolha == 3){
             System.out.println("sua escolha foi a atividade 3");
             Atividade03.atividade();
            
-        }
-        if(escolha == 4){
+        }else if(escolha == 4){
             System.out.println("sua escolha foi a atividade 4");
             Atividade04.atividade();
-        }
-        if(escolha == 5){
+        }else if(escolha == 5){
             System.out.println("sua escolha foi a atividade 5");
             Atividade05.atividade();
         }
