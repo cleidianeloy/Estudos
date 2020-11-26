@@ -36,7 +36,7 @@ public class Atividade03 {
             System.out.print(mostra);
             
         }
-        System.out.println("\no menor é o numero: " + numeros[0] + "\n" + "o maior é o numero: " + numeros[4]);
+        System.out.println("no menor é o numero: " + numeros[0] + "\n" + "o maior é o numero: " + numeros[4]);
         
     }
 
