@@ -14,7 +14,7 @@ public class Principal {
         Scanner escreva = new Scanner (System.in);
         int escolha;
         System.out.println("Você pode escolher de testar algumas atividades\nescolha entre as atividades: 2, 3, 4, 5, 6, 7, 8, 9, 10,11\n" 
-        + "12, 13, 14, 15, 16, 17, 18, 19, 20");
+        + "12, 13, 14, 15, 16, 17, 18, 19, 20, 21");
         System.out.println("Digite o numero correspondente a lista de numeros a cima: ");
         escolha = escreva.nextInt();
         
