@@ -12,6 +12,7 @@ do programa será o valor S.
  */
 package lista04;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /**
@@ -32,6 +33,7 @@ public class Atividade17 {
         return media;
     }
     private static void resultado(String escolha, double[] notas){
+        DecimalFormat df = new DecimalFormat("0.00");
         double media = 0.0;
         if(null != escolha)switch (escolha) {
             case "A":
@@ -47,7 +49,7 @@ public class Atividade17 {
                 break;
                   
         }
-        System.out.println("Resultado da escolha " + escolha + ": " + media);
+        System.out.println("Resultado da escolha " + escolha + ": " + df.format(media));
     }
     public static void atividade(){
         Scanner escreva = new Scanner(System.in);
