@@ -24,7 +24,7 @@ public class Atividade17 {
         return media;
     }
     private static double P(double[] notas){
-        double media = (notas[0]*5 + notas[1]*3+ notas[2]*2) / 3;
+        double media = (notas[0]*5 + notas[1]*3+ notas[2]*2) / 10;
         return media;
     }
     private static double H(double[] notas){
