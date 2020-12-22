@@ -1,4 +1,4 @@
-"""lecture3 URL Configuration
+"""airline URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -18,7 +18,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', include("hello.urls")),
-    path('tasks/', include("tasks.urls")),
-    path('newyear/', include("newyear.urls"))
+    path('flights/', include('flights.urls')),
+    path("users/", include('users.urls'))
 ]
